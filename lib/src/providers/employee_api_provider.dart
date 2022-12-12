@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 
 class EmployeeApiProvider {
   Future<List<Employee?>> getAllEmployees() async {
-    var url = "http://demo0033134.mockable.io/persona";
+    var url = "https://demo9054581.mockable.io/persona";
     Response response = await Dio().get(url);
 
     return (response.data as List).map((employee) {
