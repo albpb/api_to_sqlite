@@ -3,14 +3,14 @@ import 'package:api_to_sqlite/src/providers/db_provider.dart';
 import 'package:dio/dio.dart';
 
 class EmployeeApiProvider {
-  Future<List<Employee?>> getAllEmployees() async {
-    var url = "https://demo9054581.mockable.io/persona";
+  Future<List<Game?>> getAllEmployees() async {
+    var url = "http://demo6866588.mockable.io/pendinggames";
     Response response = await Dio().get(url);
 
-    return (response.data as List).map((employee) {
-      // ignore: avoid_print
-      print('Inserting $employee');
-      DBProvider.db.createEmployee(Employee.fromJson(employee));
+    return (response.data as List).map((game) {
+      // (x => fromJson(x))
+      print('Inserting $game');
+      DBProvider.db.createEmployee(Game.fromJson(game));
     }).toList();
   }
 }

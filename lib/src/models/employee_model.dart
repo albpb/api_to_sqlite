@@ -1,39 +1,31 @@
 import 'dart:convert';
 
-List<Employee> employeeFromJson(String str) =>
-    List<Employee>.from(json.decode(str).map((x) => Employee.fromJson(x)));
+List<Game> employeeFromJson(String str) =>
+    List<Game>.from(json.decode(str).map((x) => Game.fromJson(x)));
 
-String employeeToJson(List<Employee> data) =>
+String employeeToJson(List<Game> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
-class Employee {
+class Game {
   int? id;
-  String? email;
-  String? firstName;
-  String? lastName;
-  String? avatar;
+  String? title;
+  String? platform;
 
-  Employee({
+  Game({
     this.id,
-    this.email,
-    this.firstName,
-    this.lastName,
-    this.avatar,
+    this.title,
+    this.platform,
   });
 
-  factory Employee.fromJson(Map<String, dynamic> json) => Employee(
+  factory Game.fromJson(Map<String, dynamic> json) => Game(
         id: json["id"],
-        email: json["email"],
-        firstName: json["firstName"],
-        lastName: json["lastName"],
-        avatar: json["avatar"],
+        title: json["title"],
+        platform: json["platform"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "email": email,
-        "firstName": firstName,
-        "lastName": lastName,
-        "avatar": avatar,
+        "title": title,
+        "platform": platform,
       };
 }

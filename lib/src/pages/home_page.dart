@@ -101,9 +101,8 @@ class _HomePageState extends State<HomePage> {
                   "${index + 1}",
                   style: const TextStyle(fontSize: 20.0),
                 ),
-                title: Text(
-                    "Name: ${snapshot.data[index].firstName} ${snapshot.data[index].lastName} "),
-                subtitle: Text('EMAIL: ${snapshot.data[index].email}'),
+                title: Text("Title: ${snapshot.data[index].title}"),
+                subtitle: Text('Platform: ${snapshot.data[index].platform}'),
               );
             },
           );

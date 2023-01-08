@@ -24,25 +24,23 @@ class DBProvider {
   // Create the database and the Employee table
   initDB() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    final path = join(documentsDirectory.path, 'employee_manager.db');
+    final path = join(documentsDirectory.path, 'PendingGames.db');
 
     return await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
-      await db.execute('CREATE TABLE Employee('
+      await db.execute('CREATE TABLE Game('
           'id INTEGER PRIMARY KEY,'
-          'email TEXT,'
-          'firstName TEXT,'
-          'lastName TEXT,'
-          'avatar TEXT'
+          'title TEXT,'
+          'platform TEXT'
           ')');
     });
   }
 
   // Insert employee on database
-  createEmployee(Employee newEmployee) async {
+  createEmployee(Game newEmployee) async {
     await deleteAllEmployees();
     final db = await database;
-    final res = await db?.insert('Employee', newEmployee.toJson());
+    final res = await db?.insert('Game', newEmployee.toJson());
 
     return res;
   }
@@ -50,16 +48,17 @@ class DBProvider {
   // Delete all employees
   Future<int?> deleteAllEmployees() async {
     final db = await database;
-    final res = await db?.rawDelete('DELETE FROM Employee');
+    final res = await db?.rawDelete('Delete FROM Game');
 
     return res;
   }
 
-  Future<List<Employee?>> getAllEmployees() async {
+  Future<List<Game?>> getAllEmployees() async {
     final db = await database;
-    final res = await db?.rawQuery("SELECT * FROM EMPLOYEE");
+    final res = await db?.rawQuery("Select * FROM Game");
 
-    List<Employee> list = res!.isNotEmpty ? res.map((c) => Employee.fromJson(c)).toList() : [];
+    List<Game> list =
+        res!.isNotEmpty ? res.map((c) => Game.fromJson(c)).toList() : [];
 
     return list;
   }
